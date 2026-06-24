@@ -1,0 +1,52 @@
+
+# Ignore weights, checkpoints, and logs
+*.pth
+*.pt
+*.h5
+*.ckpt
+*.pb
+*.onnx
+*.weights
+checkpoints/
+saved_models/
+models/weights/
+logs/
+runs/
+wandb/
+.web_assets/
+
+# Datasets
+data/
+datasets/
+*.csv
+*.json
+*.npy
+*.npz
+*.h5py
+*.pckl
+*.pickle
+*.zip
+*.tar.gz
+*.tgz
+
+# VSCode and venv folders
+.venv/
+venv/
+env/
+ENV/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*~
+*.swp
+.DS_Store
+__pycache__/
+*.pyc
+
+# CMake / build
+build/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake_install.cmake
