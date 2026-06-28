@@ -65,7 +65,7 @@ def test_epoch(encoder, decoder, device, dataloader, loss_fn):
 def main(args):
     # 1. Setup Device
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    print(f'Dispositivo selezionato: {device}')
+    print(f'Selected Device: {device}')
     
     # 2. Folders creation
     os.makedirs(args.save_dir, exist_ok=True)
@@ -92,7 +92,7 @@ def main(args):
         train_loss = train_epoch(encoder,decoder, device, train_loader, loss_fn, optimizer)
         val_loss = test_epoch(encoder, decoder, device, test_loader, loss_fn)
         
-        print(f'EPOCA {epoch+1}/{args.epochs} - Train Loss: {train_loss:.4f} - Val Loss: {val_loss:.4f}')
+        print(f'EPOCH {epoch+1}/{args.epochs} - Train Loss: {train_loss:.4f} - Val Loss: {val_loss:.4f}')
         
         # Saving test images
         img = test_dataset[0][0].unsqueeze(0).to(device)
@@ -104,18 +104,18 @@ def main(args):
             
         fig, axs = plt.subplots(1, 2, figsize=(12,6))
         axs[0].imshow(img.cpu().squeeze().numpy(), cmap='gist_gray')
-        axs[0].set_title('Originale')
+        axs[0].set_title('Original')
         axs[1].imshow(rec_img.cpu().squeeze().numpy(), cmap='gist_gray')
-        axs[1].set_title(f'Ricostruita (Epoca {epoch + 1})')
+        axs[1].set_title(f'Reconstructed (Epoch {epoch + 1})')
         plt.savefig(os.path.join(args.save_dir, 'images', f'epoch_{epoch+1}.jpg'))
         plt.close() # Close the figure!!
         
     # 7. Save weights
-    encoder_path = os.path.join(args.save_dir, 'encoder_finale.pth')
-    decoder_path = os.path.join(args.save_dir, 'decoder_finale.pth')
+    encoder_path = os.path.join(args.save_dir, 'encoder_final.pth')
+    decoder_path = os.path.join(args.save_dir, 'decoder_final.pth')
     torch.save(encoder.state_dict(), encoder_path)
     torch.save(decoder.state_dict(), decoder_path)
-    print(f'Addestramento completato. Modello salvato in {encoder_path}')
+    print(f'Training completed. Models saved in {encoder_path}')
 
 if __name__ == "__main__":
     # Command line args configuration
